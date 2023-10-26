@@ -1,7 +1,8 @@
 "use client";
-import TypewriterTitle from "@/components/ui/TypewriterTitle";
+
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import TypewriterTitle from "../../../components/ui/TypewriterTitle";
 
 export const Heading = () => {
   return (
