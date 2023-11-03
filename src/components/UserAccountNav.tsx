@@ -1,10 +1,10 @@
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@radix-ui/react-dropdown-menu'
 import { sign } from 'crypto'
-import { Link, LogOut } from 'lucide-react'
+import Link from 'next/link'
+import { LogOut } from 'lucide-react'
 import { User } from 'next-auth'
 import { signOut } from 'next-auth/react'
 import React from 'react'
-import { Button } from './ui/button'
 import UserAvartar from './UserAvartar'
 
 type Props = {
