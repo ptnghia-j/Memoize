@@ -2,12 +2,14 @@
 
 import { useScrollTop } from "@/hooks/use-scroll-top";
 import { cn } from "@/lib/utils";
-import { Logo } from "./logo";
+import { Logo } from "../app/(marketing)/_components/logo";
 import { ModeToggle } from "@/components/mode-toggle";
-import SignInButton from "./SignInButton";
+import SignInButton from "../app/(marketing)/_components/SignInButton";
+import { Session } from "next-auth";
+import UserAccountNav from "./UserAccountNav";
 
-// TODO: Add session type
-export const Navbar = ({ session }: { session: any }) => {
+
+export const Navbar = ({ session } : { session: Session | null}) => {
   const scrolled = useScrollTop();
   
   return (
@@ -16,7 +18,9 @@ export const Navbar = ({ session }: { session: any }) => {
       <div className="md:ml-auto md:justify-end justify-between w-full flex items-center gap-x-2">
         <ModeToggle />
         { session?.user? 
-        ( <h1> Welcome {session.user.name} </h1> ): <SignInButton text="Sign in" />}
+        <UserAccountNav user={session.user}/> : 
+        <SignInButton text="Sign in" />
+        }
         
       </div>
     </div>

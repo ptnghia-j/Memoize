@@ -3,8 +3,11 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import TypewriterTitle from "../../../components/ui/TypewriterTitle";
+import { Session } from "next-auth";
+import SignInButton from "./SignInButton";
 
-export const Heading = () => {
+export const Heading = ({ session } : {session : Session | null}) => {
+
   return (
     <div className="max-w-3xl space-y-4">
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold">
@@ -18,11 +21,14 @@ export const Heading = () => {
         <TypewriterTitle /> 
       </div>
       
-
-      <Button>
+      { session?.user? 
+        <Button>
         Enter Memoize
         <ArrowRight />
-      </Button> 
+        </Button>  : 
+        <SignInButton text="Sign in" />
+        }
+      
     </div>
 
   )

@@ -1,5 +1,5 @@
 import { getAuthSession } from "@/lib/nextauth"
-import { Navbar } from "./_components/navbar"
+import { Navbar } from "../../components/navbar"
 
 const MarketingLayout = async ({ children } : { children: React.ReactNode }) => {
   const session = await getAuthSession()
