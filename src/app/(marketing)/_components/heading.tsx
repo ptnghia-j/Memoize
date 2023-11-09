@@ -2,9 +2,15 @@
 
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import TypewriterTitle from "../../../components/ui/TypewriterTitle";
 
-export const Heading = () => {
+import Link from "next/link";
+import TypewriterTitle from "../../../components/ui/TypewriterTitle";
+import { Session } from "next-auth";
+import SignInButton from "./SignInButton";
+
+export const Heading = ({ session } : {session : Session | null}) => {
+
+
   return (
     <div className="max-w-3xl space-y-4">
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold">
@@ -19,10 +25,15 @@ export const Heading = () => {
       </div>
       
 
-      <Button>
-        Enter Memoize
-        <ArrowRight />
-      </Button> 
+      { session?.user? 
+        <Link href="/dashboard"> 
+          <Button>
+            Enter Memoize
+          <ArrowRight />
+          </Button> 
+        </Link> : 
+        <SignInButton text="Sign in" />
+        }
     </div>
 
   )
