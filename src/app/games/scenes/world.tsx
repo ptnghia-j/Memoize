@@ -1,5 +1,7 @@
 import type { KaboomCtx } from "kaboom";
-import { colorizeBackground, drawTiles, fetchMapData } from "../lib/utils";
+import { colorizeBackground, drawBoundaries, drawTiles, fetchMapData } from "../lib/utils";
+import { generatePlayerComponents } from "../entities/player";
+import { generateEnemyComponents } from "../entities/enemy";
 
 export async function world(k: KaboomCtx) {
   colorizeBackground({k, r: 205, g: 255, b: 255})
@@ -8,20 +10,38 @@ export async function world(k: KaboomCtx) {
   const map = k.add([k.pos(0,0)]);
 
   const entities = {
-    player: null,
-    enemies: [],
-  }
+    player: Object(),
+    enemies: [Object()],
+  };
 
-  const layers = mapData.layers
+  const layers = mapData.layers;
 
   for (const layer of layers) {
+    console.log("layer name: ", layer.name)
 
     if (layer.name === "Boundaries") {
+      drawBoundaries(k, map, layer)
       continue
-
     }
 
     if (layer.name === "SpawnPoints") {
+      for (const object of layer.objects) {
+        if (object.name === "Player") {
+          entities.player = map.add(
+            generatePlayerComponents(k, k.vec2(object.x, object.y))
+          );
+          continue;
+        }
+
+        if (object.name === "Enemy") {
+          const enemy = map.add(
+            generateEnemyComponents(k, k.vec2(object.x, object.y))
+          );
+          entities.enemies.push(enemy);
+          continue;
+          
+        }
+      }
       continue
     }
 
@@ -30,6 +50,7 @@ export async function world(k: KaboomCtx) {
   }
 
   k.camScale(k.vec2(1.5,1.5))
+  k.camPos(entities.player.worldPos())
 
 
 }
