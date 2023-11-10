@@ -66,7 +66,32 @@ export function loadSpriteHelper(k: KaboomCtx) {
     sliceX: 39,
     sliceY: 31,
     anims: {
-      "player-idle-down": 948,
+      "player-idle-down": 940,
+      "player-down": {
+        from: 940,
+        to: 943,
+        loop: true,
+      },
+      "player-idle-left": 1057,
+      "player-left": {
+        from: 1057,
+        to: 1060,
+        loop: true,
+      },
+      "player-idle-right": 979,
+      "player-right": {
+        from: 979,
+        to: 982,
+        loop: true,
+      },
+      "player-idle-up": 1018,
+      "player-up": {
+        from: 1018,
+        to: 1021,
+        loop: true,
+      },
+      
+      
       "rabbit-idle-down": 780,
     }
   })

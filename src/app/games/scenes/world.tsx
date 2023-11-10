@@ -1,6 +1,6 @@
 import type { KaboomCtx } from "kaboom";
 import { colorizeBackground, drawBoundaries, drawTiles, fetchMapData } from "../lib/utils";
-import { generatePlayerComponents } from "../entities/player";
+import { generatePlayerComponents, setPlayerMovement } from "../entities/player";
 import { generateEnemyComponents } from "../entities/enemy";
 
 export async function world(k: KaboomCtx) {
@@ -49,8 +49,20 @@ export async function world(k: KaboomCtx) {
     console.log("done drawing tiles")
   }
 
-  k.camScale(k.vec2(1.5,1.5))
+  k.camScale(k.vec2(4,4))
   k.camPos(entities.player.worldPos())
 
+  k.onUpdate(async () => {
+    if (entities.player.pos.dist(k.camPos())) {
+      await k.tween(
+        k.camPos(),
+        entities.player.pos,
+        0.15,
+        (newPos) => k.camPos(newPos),
+        k.easings.linear,
+      )
+    }
+  })
+  setPlayerMovement(k, entities.player)
 
 }

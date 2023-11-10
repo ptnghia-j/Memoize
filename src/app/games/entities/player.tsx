@@ -1,4 +1,5 @@
-import { KaboomCtx, Vec2 } from "kaboom";
+import { KaboomCtx, Vec2, GameObj} from "kaboom";
+import { anyOfKeysPressed, playAnimIfNotPlaying } from "../lib/utils";
 
 export function generatePlayerComponents(k: KaboomCtx, pos: Vec2) {
   return [
@@ -17,4 +18,41 @@ export function generatePlayerComponents(k: KaboomCtx, pos: Vec2) {
     },
     "player"
   ]
+}
+export function setPlayerMovement(k: KaboomCtx, player: GameObj) {
+  k.onKeyDown((key) => {
+    
+    if (["left", "a"].includes(key) && !anyOfKeysPressed(k, ["up", "w", "down", "s"])) {
+      playAnimIfNotPlaying(player, "player-left")
+      player.move(-player.speed, 0);
+      player.direction = "left";
+      return
+    }
+
+    if (["right", "d"].includes(key) && !anyOfKeysPressed(k, ["up", "w", "down", "s"])) {
+      playAnimIfNotPlaying(player, "player-right")
+      player.move(player.speed, 0);
+      player.direction = "right";
+      return
+    }
+
+    if (["up", "w"].includes(key)) {
+      playAnimIfNotPlaying(player, "player-up")
+      player.move(0, -player.speed);
+      player.direction = "up";
+      return
+    }
+
+    if (["down", "s"].includes(key)) {
+      playAnimIfNotPlaying(player, "player-down")
+      player.move(0, player.speed);
+      player.direction = "down";
+      return
+    }
+  })
+
+  k.onKeyRelease(() => {
+    player.stop();
+  })
+
 }
