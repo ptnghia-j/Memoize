@@ -4,7 +4,21 @@ import { generatePlayerComponents, setPlayerMovement } from "../entities/player"
 import { generateEnemyComponents } from "../entities/enemy";
 
 export async function world(k: KaboomCtx) {
-  colorizeBackground({k, r: 205, g: 255, b: 255})
+  
+  if (Date.now() < 12) {
+    colorizeBackground({k, r:205, g: 255, b: 255})
+  }
+  else if (Date.now() < 18) {
+    colorizeBackground({k, r: 175, g: 238, b: 238})
+  }
+  else if (Date.now() < 24) {
+    colorizeBackground({k, r: 255, g: 215, b: 181})
+  }
+  else {
+    colorizeBackground({k, r: 230, g: 230, b: 250})
+  }
+
+  
   const mapData = await fetchMapData("/assets/maps/world.json")
 
   const map = k.add([k.pos(0,0)]);
