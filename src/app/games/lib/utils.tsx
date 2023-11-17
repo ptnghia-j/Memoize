@@ -1,6 +1,6 @@
 import { GameObj, KaboomCtx, Vec2 } from "kaboom";
 import { drawTilesHelper } from "./helper";
-import { Key } from "react";
+
 
 export async function fetchMapData(mapPath: string) {
   const mapData = await fetch(mapPath)

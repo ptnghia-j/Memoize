@@ -1,8 +1,8 @@
 import React from 'react'
 import { User } from 'next-auth'
-import { Avatar } from './ui/avatar'
+import { Avatar, AvatarFallback } from './ui/avatar'
 import Image from 'next/image'
-import { AvatarFallback } from '@radix-ui/react-avatar'
+
 
 
 type Props = {

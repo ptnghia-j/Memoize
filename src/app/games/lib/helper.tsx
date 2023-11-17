@@ -100,6 +100,11 @@ export function loadSpriteHelper(k: KaboomCtx) {
     sliceX: 7,
     sliceY: 9,
   })
+
+  k.loadSprite("water", "/assets/water.png", {
+    sliceX: 12,
+    sliceY: 14,
+  })
 }
 
 export function drawTilesHelper(k: KaboomCtx, map: GameObj, layer: any, pos: Vec2, tile: number) {
@@ -141,9 +146,6 @@ export function drawTilesHelper(k: KaboomCtx, map: GameObj, layer: any, pos: Vec
     ])
   }
   else if (layer.name === "water") {
-    if (tile >= 1000) {
-      return
-    }
     if (tile >= 400 && tile <= 500) {
       map.add([
         k.sprite("foam", { frame: 295 }),

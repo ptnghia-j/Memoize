@@ -23,6 +23,7 @@ export async function world(k: KaboomCtx) {
 
   const map = k.add([k.pos(0,0)]);
 
+
   const entities = {
     player: Object(),
     enemies: [Object()],
@@ -60,7 +61,7 @@ export async function world(k: KaboomCtx) {
     }
 
     drawTiles({k, map, layer, tileheight: 16, tilewidth: 16})
-    console.log("done drawing tiles")
+
   }
 
   k.camScale(k.vec2(4,4))
