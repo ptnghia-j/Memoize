@@ -14,7 +14,7 @@ const TypewriterTitle = (props: Props) => {
         typewriter.typeString('Create your own flashcards and play with them')
         .pauseFor(2000)
         .deleteAll()
-        .typeString('Create your own flashcards and play with them')
+        .typeString('Create your own flashcards and play with them ')
         .start();
       }}
   
