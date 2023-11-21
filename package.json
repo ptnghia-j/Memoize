@@ -19,7 +19,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "grapheme-splitter": "^1.0.4",
-    "kaboom": "^3000.1.14",
+    "kaboom": "^3000.1.17",
     "lucide-react": "^0.287.0",
     "next": "13.5.4",
     "next-auth": "^4.24.3",
