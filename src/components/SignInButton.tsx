@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from '@/components/ui/button'
 import React from 'react'
 import { signIn } from 'next-auth/react'
@@ -8,7 +10,7 @@ type Props = {
 
 const SignInButton = ({ text }: Props) => {
   return (
-    <Button onClick={async () => {
+    <Button onClick={() => {
       signIn('google').catch(console.error)
     }}>
       {text}
