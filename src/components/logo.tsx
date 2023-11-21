@@ -28,7 +28,7 @@ export const Logo = () => {
          alt="Logo"
          className="hidden dark:block"
       />
-      <Link href="/" className="flex items-center gap-2">
+      <Link href="/dashboard" className="flex items-center gap-2">
         <p className={cn("font-thin rounded-lg border-2 border-b-4 border-r-4 border-black px-2 py-1 transition-all hover:translate-y-[2px] md:block dark:border-white", font.className)}>
           Memoize
         </p>

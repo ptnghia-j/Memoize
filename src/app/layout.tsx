@@ -27,9 +27,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: {
+}:{
   children: React.ReactNode
 }) {
+  
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={cn(inter.className, "antialiased min-h-screen pt-16") }>
@@ -40,6 +41,7 @@ export default function RootLayout({
           disableTransitionOnChange
           storageKey='memoize-theme'
         >
+          
           {children}
         </ThemeProvider>
       </body>

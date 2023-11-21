@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 import { Heading } from "../_components/heading";
 import { Heroes } from "../_components/heroes";
 import { Footer } from '../_components/footer';
-import { Logo } from '../_components/logo';
+import { Logo } from '../../../components/logo';
 import { Navbar } from '../../../components/navbar';
 
 // test the Footer contain a <Logo /> component and two <Button /> components

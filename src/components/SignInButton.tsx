@@ -8,7 +8,7 @@ type Props = {
 
 const SignInButton = ({ text }: Props) => {
   return (
-    <Button onClick={() => {
+    <Button onClick={async () => {
       signIn('google').catch(console.error)
     }}>
       {text}

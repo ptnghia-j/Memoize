@@ -5,9 +5,13 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import TypewriterTitle from "../../../components/ui/TypewriterTitle";
 import { Session } from "next-auth";
-import SignInButton from "./SignInButton";
+import SignInButton from "../../../components/SignInButton";
+import { cn } from '@/lib/utils'
+import { useTheme } from "next-themes";
 
 export const Heading = ({ session } : {session : Session | null}) => {
+  const theme = useTheme()
+  const isDark = theme.theme === "dark"
 
   return (
     <div className="max-w-3xl space-y-4">
@@ -15,7 +19,7 @@ export const Heading = ({ session } : {session : Session | null}) => {
         Your Information, Your Definition. All in one place. Learn and Play with <span className="underline"> Memoize </span>
       </h2>
 
-      <h4 className="text-base sm:text-xl md:text-2xl font-medium bg-gradient-to-r from-blue-200 to-green-200 rounded-md">
+      <h4 className={cn("text-base sm:text-xl md:text-2xl font-medium bg-gradient-to-r from-blue-200 to-green-200 rounded-md", isDark && " from-blue-200 to-slate-200")}>
         Memoize is a flashcard game app <br/> that allows you to create your own flashcards and play with them.
       </h4>
       <div className="text-blue-400 sm:text-xl md:text-2xl">
