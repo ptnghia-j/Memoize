@@ -19,7 +19,7 @@ export const Heading = ({ session } : {session : Session | null}) => {
         Your Information, Your Definition. All in one place. Learn and Play with <span className="underline"> Memoize </span>
       </h2>
 
-      <h4 className={cn("text-base sm:text-xl md:text-2xl font-medium bg-gradient-to-r from-blue-200 to-green-200 rounded-md", isDark && " from-blue-200 to-slate-200")}>
+      <h4 className={cn("text-base sm:text-xl md:text-2xl font-medium bg-gradient-to-r from-blue-200 to-green-200 rounded-md", isDark && " from-blue-200 to-violet-200")}>
         Memoize is a flashcard game app <br/> that allows you to create your own flashcards and play with them.
       </h4>
       <div className="text-blue-400 sm:text-xl md:text-2xl">
