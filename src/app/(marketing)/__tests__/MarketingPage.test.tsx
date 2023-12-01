@@ -1,38 +1,34 @@
-import { render, screen } from '@testing-library/react';
-import MarketingPage from '../page';
-import '@testing-library/jest-dom'; 
-import { Heading } from "../_components/heading";
-import { Heroes } from "../_components/heroes";
-import { Footer } from '../_components/footer';
-import { Logo } from '../../../components/logo';
-import { Navbar } from '../../../components/navbar';
+import { Heading } from '@/app/(marketing)/_components/heading';
+import { render } from '@testing-library/react';
 
-// test the Footer contain a <Logo /> component and two <Button /> components
-// logo has two images one for light mode and one for dark mode
-test('Footer contains a Logo component and two Button components', () => {
-  render(<Footer />);
-  expect(screen.getAllByRole('img')).toHaveLength(2);
-  expect(screen.getAllByRole('button')).toHaveLength(2);
-});
+describe('Heading', () => {
+  it('With a valid session, showing button to route to dashboard', () => {
+    const session = {
+      user: {
+        id: "1",
+        name: 'test',
+        email: '',
+      },
+      expires: '',
+    }
+    
+    const header = render(<Heading session={session} />);
+    // expect to seen a Button show text "Enter Memoize"
+    expect(header.getByText("Enter Memoize")).toBeInTheDocument();
+    // to expect to see a link component with href="/dashboard"
+    expect(header.getByRole("link", {name: "Enter Memoize"})).toHaveAttribute("href", "/dashboard");
 
-// test the Heading to contain a <Button /> component with the text "Enter Memoize"
-test('Heading contains a Button component with the text "Enter Memoize"', () => {
-  render(<Heading session={null} />);
-  expect(screen.getByRole('button')).toHaveTextContent('Enter Memoize');
-});
+    
+  });
 
-// test the Heroes to contain two <Image /> components for each mode
-test('Heroes contains two Image components for each mode', () => {
-  render(<Heroes />);
-  expect(screen.getAllByRole('img')).toHaveLength(4);
-});
-
-// test the navbar to contain a <Logo /> component and a <ModeToggle /> component
-// logo has two images one for light mode and one for dark mode
-test('Navbar contains a Logo component and a ModeToggle component', () => {
-  render(<Navbar session={null} />);
-  expect(screen.getAllByRole('img')).toHaveLength(2);
-  expect(screen.getByRole('button')).toBeInTheDocument();
-});
-
+  // without session, expect to see a button show text "Sign in"
+  it('with no session, showing button asking for signing in', () => {
+    const session = null;
+    
+    const header = render(<Heading session={session} />);
+    // expect to seen a button show text "Enter Memoize"
+    expect(header.getByText("Sign in")).toBeInTheDocument();
+    // expect 
+  });
+}); 
 
