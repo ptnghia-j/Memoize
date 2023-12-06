@@ -1,5 +1,4 @@
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@radix-ui/react-dropdown-menu'
-import { sign } from 'crypto'
 import Link from 'next/link'
 import { LogOut } from 'lucide-react'
 import { User } from 'next-auth'

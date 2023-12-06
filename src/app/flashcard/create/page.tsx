@@ -43,8 +43,9 @@ function CreateCard() {
   const { isSubmitting, isValid } = form.formState;
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const response = await axios.post('/api/flashcard', values);
-      router.push(`/flashcard/${response.data.id}`)
+      const response = await axios.post('/api/collections', values);
+      router.push(`/flashcard/collections/${response.data.id}`)
+      toast.success("Collection created")
 
     } 
     catch {
