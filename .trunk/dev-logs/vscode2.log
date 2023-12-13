@@ -1,0 +1,4 @@
+2023-11-21T21:23:46.516Z [[31merror[39m] Stopping the server timed out
+2023-12-13T03:15:44.946Z [[34mdebug[39m] Starting Trunk language client with run config: {"command":"/Users/nghiaphan/.cache/trunk/launcher/trunk","args":["lsp-proxy"],"options":{"cwd":"/Users/nghiaphan/Desktop/memoize","detached":false,"shell":false}}
+2023-12-13T03:26:01.170Z [[31merror[39m] Channel has been closed
+2023-12-13T07:13:00.222Z [[34mdebug[39m] Starting Trunk language client with run config: {"command":"/Users/nghiaphan/.cache/trunk/launcher/trunk","args":["lsp-proxy"],"options":{"cwd":"/Users/nghiaphan/Desktop/memoize","detached":false,"shell":false}}
