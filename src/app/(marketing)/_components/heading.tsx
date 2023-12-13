@@ -2,12 +2,14 @@
 
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+
 import Link from "next/link";
 import TypewriterTitle from "../../../components/ui/TypewriterTitle";
 import { Session } from "next-auth";
 import SignInButton from "./SignInButton";
 
 export const Heading = ({ session } : {session : Session | null}) => {
+
 
   return (
     <div className="max-w-3xl space-y-4">
@@ -22,6 +24,7 @@ export const Heading = ({ session } : {session : Session | null}) => {
         <TypewriterTitle /> 
       </div>
       
+
       { session?.user? 
         <Link href="/dashboard"> 
           <Button>
@@ -31,8 +34,6 @@ export const Heading = ({ session } : {session : Session | null}) => {
         </Link> : 
         <SignInButton text="Sign in" />
         }
-        
-      
     </div>
 
   )
