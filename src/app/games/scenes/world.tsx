@@ -2,32 +2,20 @@ import type { KaboomCtx } from "kaboom";
 import { colorizeBackground, drawBoundaries, drawTiles, fetchMapData } from "../lib/utils";
 import { generatePlayerComponents, setPlayerMovement } from "../entities/player";
 import { generateEnemyComponents } from "../entities/enemy";
+import { light } from "../lib/helper";
+import { entities } from "../lib/helper";
 
 export async function world(k: KaboomCtx) {
-  
-  if (Date.now() < 12) {
-    colorizeBackground({k, r:205, g: 255, b: 255})
-  }
-  else if (Date.now() < 18) {
-    colorizeBackground({k, r: 175, g: 238, b: 238})
-  }
-  else if (Date.now() < 24) {
-    colorizeBackground({k, r: 255, g: 215, b: 181})
-  }
-  else {
-    colorizeBackground({k, r: 230, g: 230, b: 250})
-  }
+  let time = Date.now();
+  if (time > 6 && time < 12)
+    colorizeBackground({k, r:200, g: 255, b: 255})
+  else 
+    colorizeBackground({k, r: 119, g: 136, b: 153})
 
-  
+
   const mapData = await fetchMapData("/assets/maps/world.json")
 
   const map = k.add([k.pos(0,0)]);
-
-
-  const entities = {
-    player: Object(),
-    enemies: [Object()],
-  };
 
   const layers = mapData.layers;
 
@@ -61,11 +49,12 @@ export async function world(k: KaboomCtx) {
     }
 
     drawTiles({k, map, layer, tileheight: 16, tilewidth: 16})
-
   }
 
-  k.camScale(k.vec2(4,4))
+
+  k.camScale(k.vec2(3,3))
   k.camPos(entities.player.worldPos())
+
 
   k.onUpdate(async () => {
     if (entities.player.pos.dist(k.camPos())) {
@@ -77,7 +66,18 @@ export async function world(k: KaboomCtx) {
         k.easings.linear,
       )
     }
+  
+    if (Date.now() < 6 || Date.now() > 18) {
+      light(k)
+    } 
+    // for testing 
+    // light(k)
   })
   setPlayerMovement(k, entities.player)
 
+  if (Date.now() < 6 || Date.now() > 18) {
+    light(k)
+  }
+  // for testing 
+  // light(k)
 }

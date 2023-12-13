@@ -252,3 +252,187 @@ export function drawTilesHelper(k: KaboomCtx, map: GameObj, layer: any, pos: Vec
     }
   }
 }
+
+export const entities = {
+  player: Object(),
+  enemies: [Object()],
+};
+
+export function light(k: KaboomCtx) {
+  let offset = 50 + k.rand();
+  let opac = 0.95;
+  let subOffset = offset * 0.45;
+  k.destroyAll("light")
+  // top left
+  k.add([
+    k.pos(entities.player.pos.x - offset,  entities.player.pos.y - offset),
+    k.polygon([k.vec2(0, 0), k.vec2(0, -k.height() * 5), k.vec2(-k.width() * 5, -k.height() * 5), k.vec2(-k.width() * 5, 0)]),
+    k.color(0,0,0),
+    k.opacity(opac),
+    "light"
+  ])
+  // top right
+  k.add([
+    k.pos(entities.player.pos.x + offset,  entities.player.pos.y - offset),
+    k.polygon([k.vec2(0, 0), k.vec2(0, -k.height() * 5), k.vec2(k.width() * 5, -k.height() * 5), k.vec2(k.width() * 5, 0)]),
+    k.color(0,0,0),
+    k.opacity(opac),
+    "light"
+  ])
+  // bottom left
+  k.add([
+    k.pos(entities.player.pos.x - offset,  entities.player.pos.y + offset),
+    k.polygon([k.vec2(0, 0), k.vec2(0, k.height() * 5), k.vec2(-k.width() * 5, k.height() * 5), k.vec2(-k.width() * 5, 0)]),
+    k.color(0,0,0),
+    k.opacity(opac),
+    "light"
+  ])
+  // bottom right
+  k.add([
+    k.pos(entities.player.pos.x + offset,  entities.player.pos.y + offset),
+    k.polygon([k.vec2(0, 0), k.vec2(0, k.height() * 5), k.vec2(k.width() * 5, k.height() * 5), k.vec2(k.width() * 5, 0)]),
+    k.color(0,0,0),
+    k.opacity(opac),
+    "light"
+  ])
+  // top
+  k.add([
+    k.pos(entities.player.pos.x,  entities.player.pos.y - offset),
+    k.polygon([k.vec2(-offset, 0), k.vec2(offset + 5, 0), k.vec2(-offset, -k.height() * 5), k.vec2(offset + 5, -k.height() * 5)]),
+    k.color(0,0,0),
+    k.opacity(opac),
+    "light"
+  ])
+  // bottom
+  k.add([
+    k.pos(entities.player.pos.x,  entities.player.pos.y + offset),
+    k.polygon([k.vec2(-offset, 0), k.vec2(offset + 5, 0), k.vec2(-offset, k.height() * 5), k.vec2(offset + 5, k.height() * 5)]),
+    k.color(0,0,0),
+    k.opacity(opac),
+    "light"
+  ])
+  // left
+  k.add([
+    k.pos(entities.player.pos.x - offset,  entities.player.pos.y),
+    k.polygon([k.vec2(0, -offset), k.vec2(0, offset + 5), k.vec2(-k.width() * 5, -offset), k.vec2(-k.width() * 5, offset + 5)]),
+    k.color(0,0,0),
+    k.opacity(opac),
+    "light"
+  ])
+  // right
+  k.add([
+    k.pos(entities.player.pos.x + offset,  entities.player.pos.y),
+    k.polygon([k.vec2(0, -offset), k.vec2(0, offset + 5), k.vec2(k.width() * 5, -offset), k.vec2(k.width() * 5, offset + 5)]),
+    k.color(0,0,0),
+    k.opacity(opac),
+    "light"
+  ])
+
+  // padding top left
+  k.add([
+    k.pos(entities.player.pos.x-offset,  entities.player.pos.y-offset),
+    k.polygon([k.vec2(0, 0), k.vec2(subOffset, 0), k.vec2(0, subOffset)]),
+    k.color(0,0,0),
+    k.opacity(opac * opac),
+    "light"
+  ])
+  k.add([
+    k.pos(entities.player.pos.x-offset,  entities.player.pos.y-offset),
+    k.polygon([k.vec2(0, offset), k.vec2(0, subOffset), k.vec2(10, 10)]),
+    k.color(0,0,0),
+    k.opacity(opac * opac),
+    "light"
+  ])
+
+  // padding top right
+  k.add([
+    k.pos(entities.player.pos.x+offset,  entities.player.pos.y-offset),
+    k.polygon([k.vec2(0, 0), k.vec2(-subOffset, 0), k.vec2(0, subOffset)]),
+    k.color(0,0,0),
+    k.opacity(opac * opac),
+    "light"
+  ])
+  k.add([
+    k.pos(entities.player.pos.x+offset,  entities.player.pos.y-offset),
+    k.polygon([k.vec2(0, offset), k.vec2(0, subOffset), k.vec2(-10, 10)]),
+    k.color(0,0,0),
+    k.opacity(opac * opac),
+    "light"
+  ])
+  // padding bottom left
+  k.add([
+    k.pos(entities.player.pos.x-offset,  entities.player.pos.y+offset),
+    k.polygon([k.vec2(0, 0), k.vec2(subOffset, 0), k.vec2(0, -subOffset)]),
+    k.color(0,0,0),
+    k.opacity(opac * opac),
+    "light"
+  ])
+  k.add([
+    k.pos(entities.player.pos.x-offset,  entities.player.pos.y+offset),
+    k.polygon([k.vec2(0, -offset), k.vec2(0, -subOffset), k.vec2(10, -10)]),
+    k.color(0,0,0),
+    k.opacity(opac * opac),
+    "light"
+  ])
+  // padding bottom right
+  k.add([
+    k.pos(entities.player.pos.x+offset,  entities.player.pos.y+offset),
+    k.polygon([k.vec2(0, 0), k.vec2(-subOffset, 0), k.vec2(0, -subOffset)]),
+    k.color(0,0,0),
+    k.opacity(opac * opac),
+    "light"
+  ])
+  k.add([
+    k.pos(entities.player.pos.x+offset,  entities.player.pos.y+offset),
+    k.polygon([k.vec2(0, -offset), k.vec2(0, -subOffset), k.vec2(-10, -10)]),
+    k.color(0,0,0),
+    k.opacity(opac * opac),
+    "light"
+  ])
+
+  // add circle to create a night effect around the player
+  k.add([
+    k.pos(entities.player.pos.x,  entities.player.pos.y),
+    k.circle(k.width()),
+    k.color(0,0,0),
+    k.opacity(0.5),
+    "light"
+  ])
+  //smaller circle with yellow color
+  k.add([
+    k.pos(entities.player.pos.x,  entities.player.pos.y),
+    k.circle(80),
+    k.color(255,255,0),
+    k.opacity(0.05),
+    "light"
+  ])
+  k.add([
+    k.pos(entities.player.pos.x,  entities.player.pos.y),
+    k.circle(78),
+    k.color(255,255,0),
+    k.opacity(0.05),
+    "light"
+  ])
+  k.add([
+    k.pos(entities.player.pos.x,  entities.player.pos.y),
+    k.circle(65),
+    k.color(255,255,0),
+    k.opacity(0.05),
+    "light"
+  ])
+
+  // add light around the enemies
+  for (const enemy of entities.enemies) {
+    try {
+      k.add([
+        k.pos(enemy.pos.x,  enemy.pos.y),
+        k.circle(30),
+        k.color(255,255,0),
+        k.opacity(0.05),
+        "light"
+      ])
+    }
+    catch(err) {
+    }
+  }
+}
