@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState} from 'react'
+import { use, useCallback, useEffect, useRef, useState} from 'react'
 import kaboom, { KaboomCtx } from 'kaboom'
 import { world } from './scenes/world'
 import { loadSpriteHelper } from './lib/helper'
@@ -12,11 +12,11 @@ const Canvas: React.FC = () => {
   
   const useWorld = useCallback((k: KaboomCtx) => {
     world(k)
-  }, [world])
+  }, [])
 
   const useloadSpriteHelper = useCallback((k: KaboomCtx) => {
     loadSpriteHelper(k)
-  }, [loadSpriteHelper])
+  }, [])
 
 	useEffect(() => {
     if (isRunning.current || !canvasRef || !canvasRef.current) {
@@ -45,7 +45,7 @@ const Canvas: React.FC = () => {
     k.go("world")
 
   //  add k to the dependency to track when it changes
-	}, [])
+	}, [useWorld, useloadSpriteHelper])
 
 	return <canvas ref={canvasRef}></canvas>
 
