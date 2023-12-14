@@ -1,6 +1,6 @@
 "use client"
 
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card'
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 import { History } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import React from 'react'

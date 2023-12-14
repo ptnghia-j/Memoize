@@ -1,5 +1,5 @@
 "use client"
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { useRouter } from 'next/navigation'
 import { Gamepad2 } from 'lucide-react'
 import Typewriter from 'typewriter-effect'
