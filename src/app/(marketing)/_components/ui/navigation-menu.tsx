@@ -6,7 +6,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from "@radix-ui/react-navigation-menu"
+} from "@/components/ui/navigation-menu"
 
 export function NavigationMenuTab() {
   return (
