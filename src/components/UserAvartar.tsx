@@ -1,8 +1,7 @@
 import React from 'react'
 import { User } from 'next-auth'
-import { Avatar } from './ui/avatar'
+import { Avatar, AvatarFallback } from './ui/avatar'
 import Image from 'next/image'
-import { AvatarFallback } from '@radix-ui/react-avatar'
 
 
 type Props = {
@@ -24,9 +23,7 @@ const UserAvartar = ({ user }: Props) => {
         <AvatarFallback>
           <span className="sr-only"> {user?.name} </span>
         </AvatarFallback>
-
       }
-
     </Avatar>
   )
 }

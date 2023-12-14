@@ -48,3 +48,72 @@ model User {
   accounts Account[]
   sessions Session[]
 }
+
+model Collection {
+  id            String    @id @default(cuid())
+  userId        String
+  title         String    @db.Text
+  description   String?   @db.Text
+  imageUrl      String?   @db.Text
+  isPublished   Boolean   @default(false)
+
+  categoryId    String?
+  category      Category? @relation(fields: [categoryId], references: [id])
+  attachments   Attachment[]
+  flashcards    Flashcard[]
+  
+  
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  @@index([categoryId], name: "userId")
+}
+
+model Attachment {
+  id            String    @id @default(cuid())
+  name          String   
+  url           String    @db.Text
+
+  collectionId  String
+  collection    Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([collectionId])
+}
+
+model Category {
+  id            String    @id @default(cuid())
+  name          String    @unique
+  collections   Collection[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+}
+
+model Flashcard {
+  id            String    @id @default(cuid())
+  front         String    @db.Text
+  back          String    @db.Text
+  image         String?   @db.Text
+  position      Int
+  isPublished   Boolean   @default(false)
+
+
+  collectionId  String
+  collection    Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([collectionId])
+}
+
+model StripeCustomer {
+  id            String    @id @default(cuid())
+  userId        String    @unique
+  stripeId      String    @unique
+  
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}

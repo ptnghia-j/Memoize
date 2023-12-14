@@ -1,6 +1,7 @@
 import { GameObj, KaboomCtx, Vec2 } from "kaboom";
 import { drawTilesHelper } from "./helper";
 
+
 export async function fetchMapData(mapPath: string) {
   const mapData = await fetch(mapPath)
   return await mapData.json()
@@ -57,6 +58,21 @@ export function drawBoundaries(k: KaboomCtx, map: GameObj, layer: any) {
         object.width, 
         object.height, 
         object.name))
-
   }
+}
+
+export function playAnimIfNotPlaying(obj: GameObj, animName: string) {
+  if(obj.curAnim() !== animName) obj.play(animName)
+}
+
+// prevent character moving diagonally
+export function anyOfKeysPressed(k: KaboomCtx, keys: any[]) {
+  if (keys?.length === 0) return false
+  
+
+  for (const key of keys) {
+    if (k.isKeyDown(key)) return true
+  }
+
+  return false
 }

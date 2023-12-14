@@ -6,7 +6,7 @@ const MarketingLayout = async ({ children } : { children: React.ReactNode }) => 
    return (
     <div className="h-full dark:bg-[#1F1F1F]">
         {/* Pass session information to the navbar to print out user name */}
-        <Navbar session={session} />
+        <Navbar session={session} sidebarVisible={false} />
         <main className="h-full pt-40">
           {children}
         </main>

@@ -66,14 +66,70 @@ export function loadSpriteHelper(k: KaboomCtx) {
     sliceX: 39,
     sliceY: 31,
     anims: {
-      "player-idle-down": 948,
+      "player-idle-down": 940,
+      "player-down": {
+        from: 940,
+        to: 943,
+        loop: true,
+      },
+      "player-idle-left": 1057,
+      "player-left": {
+        from: 1057,
+        to: 1060,
+        loop: true,
+      },
+      "player-idle-right": 979,
+      "player-right": {
+        from: 979,
+        to: 982,
+        loop: true,
+      },
+      "player-idle-up": 1018,
+      "player-up": {
+        from: 1018,
+        to: 1021,
+        loop: true,
+      },
+      
+      
       "rabbit-idle-down": 780,
+      "rabbit-down": {
+        from: 781,
+        to: 781,
+        loop: true,
+      },
+
+      "rabbit-idle-left": 821,
+      "rabbit-left": {
+        from: 821,
+        to: 822,
+        loop: true,
+      },
+
+      "rabbit-idle-right": 782,
+      "rabbit-right": {
+        from: 782,
+        to: 783,
+        loop: true,
+      },
+
+      "rabbit-idle-up": 819,
+      "rabbit-up": {
+        from: 819,
+        to: 820,
+        loop: true,
+      },
     }
   })
 
   k.loadSprite("trees", "/assets/trees.png", {
     sliceX: 7,
     sliceY: 9,
+  })
+
+  k.loadSprite("water", "/assets/water.png", {
+    sliceX: 12,
+    sliceY: 14,
   })
 }
 
@@ -116,9 +172,6 @@ export function drawTilesHelper(k: KaboomCtx, map: GameObj, layer: any, pos: Vec
     ])
   }
   else if (layer.name === "water") {
-    if (tile >= 1000) {
-      return
-    }
     if (tile >= 400 && tile <= 500) {
       map.add([
         k.sprite("foam", { frame: 295 }),
@@ -222,6 +275,190 @@ export function drawTilesHelper(k: KaboomCtx, map: GameObj, layer: any, pos: Vec
         k.pos(pos),
         k.offscreen(),
       ])
+    }
+  }
+}
+
+export const entities = {
+  player: Object(),
+  enemies: [Object()],
+};
+
+export function light(k: KaboomCtx) {
+  let offset = 50 + k.rand();
+  let opac = 0.95;
+  let subOffset = offset * 0.45;
+  k.destroyAll("light")
+  // top left
+  k.add([
+    k.pos(entities.player.pos.x - offset,  entities.player.pos.y - offset),
+    k.polygon([k.vec2(0, 0), k.vec2(0, -k.height() * 5), k.vec2(-k.width() * 5, -k.height() * 5), k.vec2(-k.width() * 5, 0)]),
+    k.color(0,0,0),
+    k.opacity(opac),
+    "light"
+  ])
+  // top right
+  k.add([
+    k.pos(entities.player.pos.x + offset,  entities.player.pos.y - offset),
+    k.polygon([k.vec2(0, 0), k.vec2(0, -k.height() * 5), k.vec2(k.width() * 5, -k.height() * 5), k.vec2(k.width() * 5, 0)]),
+    k.color(0,0,0),
+    k.opacity(opac),
+    "light"
+  ])
+  // bottom left
+  k.add([
+    k.pos(entities.player.pos.x - offset,  entities.player.pos.y + offset),
+    k.polygon([k.vec2(0, 0), k.vec2(0, k.height() * 5), k.vec2(-k.width() * 5, k.height() * 5), k.vec2(-k.width() * 5, 0)]),
+    k.color(0,0,0),
+    k.opacity(opac),
+    "light"
+  ])
+  // bottom right
+  k.add([
+    k.pos(entities.player.pos.x + offset,  entities.player.pos.y + offset),
+    k.polygon([k.vec2(0, 0), k.vec2(0, k.height() * 5), k.vec2(k.width() * 5, k.height() * 5), k.vec2(k.width() * 5, 0)]),
+    k.color(0,0,0),
+    k.opacity(opac),
+    "light"
+  ])
+  // top
+  k.add([
+    k.pos(entities.player.pos.x,  entities.player.pos.y - offset),
+    k.polygon([k.vec2(-offset, 0), k.vec2(offset + 5, 0), k.vec2(-offset, -k.height() * 5), k.vec2(offset + 5, -k.height() * 5)]),
+    k.color(0,0,0),
+    k.opacity(opac),
+    "light"
+  ])
+  // bottom
+  k.add([
+    k.pos(entities.player.pos.x,  entities.player.pos.y + offset),
+    k.polygon([k.vec2(-offset, 0), k.vec2(offset + 5, 0), k.vec2(-offset, k.height() * 5), k.vec2(offset + 5, k.height() * 5)]),
+    k.color(0,0,0),
+    k.opacity(opac),
+    "light"
+  ])
+  // left
+  k.add([
+    k.pos(entities.player.pos.x - offset,  entities.player.pos.y),
+    k.polygon([k.vec2(0, -offset), k.vec2(0, offset + 5), k.vec2(-k.width() * 5, -offset), k.vec2(-k.width() * 5, offset + 5)]),
+    k.color(0,0,0),
+    k.opacity(opac),
+    "light"
+  ])
+  // right
+  k.add([
+    k.pos(entities.player.pos.x + offset,  entities.player.pos.y),
+    k.polygon([k.vec2(0, -offset), k.vec2(0, offset + 5), k.vec2(k.width() * 5, -offset), k.vec2(k.width() * 5, offset + 5)]),
+    k.color(0,0,0),
+    k.opacity(opac),
+    "light"
+  ])
+
+  // padding top left
+  k.add([
+    k.pos(entities.player.pos.x-offset,  entities.player.pos.y-offset),
+    k.polygon([k.vec2(0, 0), k.vec2(subOffset, 0), k.vec2(0, subOffset)]),
+    k.color(0,0,0),
+    k.opacity(opac * opac),
+    "light"
+  ])
+  k.add([
+    k.pos(entities.player.pos.x-offset,  entities.player.pos.y-offset),
+    k.polygon([k.vec2(0, offset), k.vec2(0, subOffset), k.vec2(10, 10)]),
+    k.color(0,0,0),
+    k.opacity(opac * opac),
+    "light"
+  ])
+
+  // padding top right
+  k.add([
+    k.pos(entities.player.pos.x+offset,  entities.player.pos.y-offset),
+    k.polygon([k.vec2(0, 0), k.vec2(-subOffset, 0), k.vec2(0, subOffset)]),
+    k.color(0,0,0),
+    k.opacity(opac * opac),
+    "light"
+  ])
+  k.add([
+    k.pos(entities.player.pos.x+offset,  entities.player.pos.y-offset),
+    k.polygon([k.vec2(0, offset), k.vec2(0, subOffset), k.vec2(-10, 10)]),
+    k.color(0,0,0),
+    k.opacity(opac * opac),
+    "light"
+  ])
+  // padding bottom left
+  k.add([
+    k.pos(entities.player.pos.x-offset,  entities.player.pos.y+offset),
+    k.polygon([k.vec2(0, 0), k.vec2(subOffset, 0), k.vec2(0, -subOffset)]),
+    k.color(0,0,0),
+    k.opacity(opac * opac),
+    "light"
+  ])
+  k.add([
+    k.pos(entities.player.pos.x-offset,  entities.player.pos.y+offset),
+    k.polygon([k.vec2(0, -offset), k.vec2(0, -subOffset), k.vec2(10, -10)]),
+    k.color(0,0,0),
+    k.opacity(opac * opac),
+    "light"
+  ])
+  // padding bottom right
+  k.add([
+    k.pos(entities.player.pos.x+offset,  entities.player.pos.y+offset),
+    k.polygon([k.vec2(0, 0), k.vec2(-subOffset, 0), k.vec2(0, -subOffset)]),
+    k.color(0,0,0),
+    k.opacity(opac * opac),
+    "light"
+  ])
+  k.add([
+    k.pos(entities.player.pos.x+offset,  entities.player.pos.y+offset),
+    k.polygon([k.vec2(0, -offset), k.vec2(0, -subOffset), k.vec2(-10, -10)]),
+    k.color(0,0,0),
+    k.opacity(opac * opac),
+    "light"
+  ])
+
+  // add circle to create a night effect around the player
+  k.add([
+    k.pos(entities.player.pos.x,  entities.player.pos.y),
+    k.circle(k.width()),
+    k.color(0,0,0),
+    k.opacity(0.5),
+    "light"
+  ])
+  //smaller circle with yellow color
+  k.add([
+    k.pos(entities.player.pos.x,  entities.player.pos.y),
+    k.circle(80),
+    k.color(255,255,0),
+    k.opacity(0.05),
+    "light"
+  ])
+  k.add([
+    k.pos(entities.player.pos.x,  entities.player.pos.y),
+    k.circle(78),
+    k.color(255,255,0),
+    k.opacity(0.05),
+    "light"
+  ])
+  k.add([
+    k.pos(entities.player.pos.x,  entities.player.pos.y),
+    k.circle(65),
+    k.color(255,255,0),
+    k.opacity(0.05),
+    "light"
+  ])
+
+  // add light around the enemies
+  for (const enemy of entities.enemies) {
+    try {
+      k.add([
+        k.pos(enemy.pos.x,  enemy.pos.y),
+        k.circle(30),
+        k.color(255,255,0),
+        k.opacity(0.05),
+        "light"
+      ])
+    }
+    catch(err) {
     }
   }
 }

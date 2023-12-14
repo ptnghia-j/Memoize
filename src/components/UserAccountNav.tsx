@@ -1,5 +1,4 @@
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@radix-ui/react-dropdown-menu'
-import { sign } from 'crypto'
 import Link from 'next/link'
 import { LogOut } from 'lucide-react'
 import { User } from 'next-auth'
@@ -19,21 +18,21 @@ const UserAccountNav = ({ user} : Props) => {
        
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent className="" align="end">
-        <div className="flex items-center justify-start gap-2 p-2">
+      <DropdownMenuContent className="rounded-lg border-2 shadow-md z-50 bg-white" align="end">
+        <div className="flex items-center justify-start gap-2 p-2 border-2">
           <div className="flex flex-col space-y-1 leading-none">
             {user.name && <p className="font-medium"> {user.name} </p>}
             {user.email && <p className="w-[200px] truncate text-sm text-zinc-700"> {user.email} </p>}
           </div>
         </div>
 
-        <DropdownMenuSeparator />
+        <DropdownMenuSeparator/>
 
         <DropdownMenuItem asChild>
             <Link href=""> Placeholder </Link>
         </DropdownMenuItem>
 
-        <DropdownMenuItem onClick={(e) => {
+        <DropdownMenuItem className="hover:cursor-pointer" onClick={(e) => {
           e.preventDefault()
           signOut().catch(console.error)
         }}>
