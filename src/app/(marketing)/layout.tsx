@@ -11,6 +11,7 @@ const MarketingLayout = async ({ children } : { children: React.ReactNode }) => 
           {children}
         </main>
       </div>
+
    )
  }
 

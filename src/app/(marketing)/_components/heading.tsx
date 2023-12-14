@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-
 import TypewriterTitle from "../../../components/ui/TypewriterTitle";
 import { Session } from "next-auth";
 import SignInButton from "../../../components/SignInButton";
@@ -17,6 +16,7 @@ import { cn } from "@/lib/utils"
 export const Heading = ({ session } : {session : Session | null}) => {
   const theme = useTheme()
   const isDark = theme.theme === "dark"
+
 
   return (
     <div className="max-w-3xl space-y-4">
@@ -45,13 +45,7 @@ export const Heading = ({ session } : {session : Session | null}) => {
         <div className="flex flex-col items-center">
           <NavigationMenuTab />
         </div>
-
-        
       )}
-
-      
-        
-      
     </div>
 
   )
