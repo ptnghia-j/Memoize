@@ -7,7 +7,7 @@ import { NavigationMenuTab } from "./ui/navigation-menu";
 
 import { useTheme } from "next-themes";
 
-import { cn } from "@/lib/utils";
+import { cn } from "../../../lib/utils";
 
 
 export const Heading = ({ session } : {session : Session | null}) => {
