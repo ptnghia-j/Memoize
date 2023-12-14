@@ -4,6 +4,7 @@ const nextConfig = {
     domains:[
       "lh3.googleusercontent.com",
       "utfs.io",
+      "oaidalleapiprodscus.blob.core.windows.net"
 
     ]
   }

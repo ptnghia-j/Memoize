@@ -2,11 +2,13 @@ import React from 'react'
 import { prisma } from '@/lib/db'
 import { getAuthSession } from '@/lib/nextauth'
 import { redirect } from 'next/navigation'
-import { LayoutDashboard } from 'lucide-react'
+import { Cat, LayoutDashboard, ListChecks, Share } from 'lucide-react'
 import { IconBadge } from '@/components/icon-badge'
 import { TitleForm } from './_components/title-form'
 import { DescriptionForm } from './_components/description-form'
 import { ImageForm } from './_components/image-form'
+import { CategoryForm } from './_components/category-form'
+import { ShareForm } from './_components/share-form'
 
 const CollectionIdPage = async ({params} : {
   params: { collectionId : string}
@@ -24,6 +26,13 @@ const CollectionIdPage = async ({params} : {
     }
   })
 
+  const categories = await prisma.category.findMany({
+    orderBy: {
+      name: 'asc',
+    }
+  });
+  
+
   if (!collection) {
     return redirect("/")
   }
@@ -39,7 +48,6 @@ const CollectionIdPage = async ({params} : {
   const completedFields = requiredFields.filter(Boolean).length
 
   const progress = `(${completedFields}/${totalFields})`
-  const text = collection.description;
 
   return (
     <div className="p-6">
@@ -77,6 +85,42 @@ const CollectionIdPage = async ({params} : {
             initialData = { collection }
             collectionId = { collection.id }
           />
+
+          <CategoryForm 
+            initialData = { collection }
+            collectionId = { collection.id }
+            options = { categories.map((category) => ({
+              label: category.name,
+              value: category.id
+            }))}
+          />
+        </div>
+        <div className="space-y-6">
+          <div>
+            <div className="flex items-center gap-x-2">
+              <IconBadge icon={ListChecks} />
+              <h2 className="text-xl">
+                Add flashcards
+              </h2>
+            </div>
+            <div>
+              ToDo: Add flashcards
+            </div>
+          </div>
+          <div>
+            <div className="flex items-center gap-x-2">
+              <IconBadge icon={Share} />
+              <h2 className="text-xl">
+                Share your collection
+              </h2>
+            </div>
+            <div>
+              <ShareForm collectionId={collection.id} />
+            </div>
+
+          </div>
+
+
         </div>
 
       </div>

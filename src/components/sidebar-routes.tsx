@@ -1,6 +1,6 @@
 "use client"
 import React from 'react'
-import { Compass, Layout } from "lucide-react";
+import { Compass, Image, Layout } from "lucide-react";
 import { SidebarItem } from './sidebar-item'
 
 type Props = {}
@@ -15,6 +15,11 @@ const guestRoutes = [
     icon: Compass,
     label: "Browse Cards",
     href: "/flashcard/search",
+  },
+  {
+    icon: Image,
+    label: "Image Gallery",
+    href: "/flashcard/generatedImages",
   }
 ]
 

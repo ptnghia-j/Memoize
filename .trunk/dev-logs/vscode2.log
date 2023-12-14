@@ -2,3 +2,11 @@
 2023-12-13T03:15:44.946Z [[34mdebug[39m] Starting Trunk language client with run config: {"command":"/Users/nghiaphan/.cache/trunk/launcher/trunk","args":["lsp-proxy"],"options":{"cwd":"/Users/nghiaphan/Desktop/memoize","detached":false,"shell":false}}
 2023-12-13T03:26:01.170Z [[31merror[39m] Channel has been closed
 2023-12-13T07:13:00.222Z [[34mdebug[39m] Starting Trunk language client with run config: {"command":"/Users/nghiaphan/.cache/trunk/launcher/trunk","args":["lsp-proxy"],"options":{"cwd":"/Users/nghiaphan/Desktop/memoize","detached":false,"shell":false}}
+2023-12-13T20:00:03.051Z [[34mdebug[39m] Starting Trunk language client with run config: {"command":"/Users/nghiaphan/.cache/trunk/launcher/trunk","args":["lsp-proxy"],"options":{"cwd":"/Users/nghiaphan/Desktop/memoize","detached":false,"shell":false}}
+2023-12-13T20:00:22.397Z [[31merror[39m] Channel has been closed
+2023-12-13T22:49:21.912Z [[34mdebug[39m] Starting Trunk language client with run config: {"command":"/Users/nghiaphan/.cache/trunk/launcher/trunk","args":["lsp-proxy"],"options":{"cwd":"/Users/nghiaphan/Desktop/memoize","detached":false,"shell":false}}
+2023-12-14T00:14:53.693Z [[31merror[39m] Channel has been closed
+2023-12-14T00:15:02.308Z [[34mdebug[39m] Starting Trunk language client with run config: {"command":"/Users/nghiaphan/.cache/trunk/launcher/trunk","args":["lsp-proxy"],"options":{"cwd":"/Users/nghiaphan/Desktop/memoize","detached":false,"shell":false}}
+2023-12-14T01:11:11.806Z [[31merror[39m] Received critical error from lsp proxy: Unable to detect an upstream commit on this branch: Unable to detect a trunk branch such as 'main'. Checked the following - refs/remotes/origin/HEAD, refs/remotes/origin/main, refs/remotes/origin/master, main, master. See https://docs.trunk.io/docs/reference-trunk-yaml#repo for more information
+2023-12-14T01:11:11.809Z [[31merror[39m] Unable to detect an upstream commit on this branch: Unable to detect a trunk branch such as 'main'. Checked the following - refs/remotes/origin/HEAD, refs/remotes/origin/main, refs/remotes/origin/master, main, master. See https://docs.trunk.io/docs/reference-trunk-yaml#repo for more information
+2023-12-14T01:11:13.820Z [[31merror[39m] Stopping the server timed out
