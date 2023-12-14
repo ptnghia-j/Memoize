@@ -11,7 +11,7 @@ import { formSchema } from "./constants";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { amountOptions, resolutionOptions } from "./constants";
-import { Card, CardFooter } from "@/components/ui/card";
+import { Card, CardFooter } from "@/components/ui/Card";
 import { Empty } from "@/components/ui/empty";
 import { Loader } from "@/components/ui/loader";
 import Image from "next/image";

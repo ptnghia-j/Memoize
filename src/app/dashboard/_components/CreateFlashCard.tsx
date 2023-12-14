@@ -1,5 +1,5 @@
 "use client"
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
 import { BrainCircuit } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import React from 'react'

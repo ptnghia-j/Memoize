@@ -1,5 +1,5 @@
 "use client";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card'
 import React from 'react'
 import WordCloud from './WordCloud'
 
