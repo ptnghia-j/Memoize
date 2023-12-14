@@ -18,3 +18,4 @@
 2023-12-14T16:08:25.706Z [[31merror[39m] Channel has been closed
 2023-12-14T17:05:57.245Z [[34mdebug[39m] Starting Trunk language client with run config: {"command":"/Users/nghiaphan/.cache/trunk/launcher/trunk","args":["lsp-proxy"],"options":{"cwd":"/Users/nghiaphan/Desktop/memoize","detached":false,"shell":false}}
 2023-12-14T18:45:52.110Z [[31merror[39m] Channel has been closed
+2023-12-14T19:13:53.724Z [[34mdebug[39m] Starting Trunk language client with run config: {"command":"/Users/nghiaphan/.cache/trunk/launcher/trunk","args":["lsp-proxy"],"options":{"cwd":"/Users/nghiaphan/Desktop/memoize","detached":false,"shell":false}}
