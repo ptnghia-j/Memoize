@@ -2,7 +2,7 @@
 
  import { useScrollTop } from "@/hooks/use-scroll-top";
  import { cn } from "@/lib/utils";
- import { Logo } from "./logo";
+ import { Logo } from "@/components/logo";
  import { ModeToggle } from "@/components/mode-toggle";
 
  export const Navbar = () => {

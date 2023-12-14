@@ -6,11 +6,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
-
-import { ListItem } from "./list-item"
-import Link from "next/link"
 
 export function NavigationMenuTab() {
   return (
