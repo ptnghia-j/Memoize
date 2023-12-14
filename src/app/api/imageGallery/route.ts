@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 import { getAuthSession } from '@/lib/nextauth';
 
 const openai = new OpenAI({
-  apiKey: process.env['OPENAI_API_KEY'], // This is the default and can be omitted
+  apiKey: process.env.OPENAI_API_KEY, // This is the default and can be omitted
 });
 
 export async function POST(
