@@ -4,7 +4,6 @@ import { Avatar, AvatarFallback } from './ui/avatar'
 import Image from 'next/image'
 
 
-
 type Props = {
   user: Pick<User, 'name' | 'image'>
 }
@@ -24,9 +23,7 @@ const UserAvartar = ({ user }: Props) => {
         <AvatarFallback>
           <span className="sr-only"> {user?.name} </span>
         </AvatarFallback>
-
       }
-
     </Avatar>
   )
 }

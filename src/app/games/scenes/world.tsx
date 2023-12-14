@@ -4,10 +4,11 @@ import { generatePlayerComponents, setPlayerMovement } from "../entities/player"
 import { generateEnemyComponents } from "../entities/enemy";
 import { light } from "../lib/helper";
 import { entities } from "../lib/helper";
+import { setEnemyAI } from "../entities/enemy";
 
 export async function world(k: KaboomCtx) {
-  let time = Date.now();
-  if (time > 6 && time < 12)
+  const time = new Date().getHours()
+  if (time > 6 || time < 12)
     colorizeBackground({k, r:200, g: 255, b: 255})
   else 
     colorizeBackground({k, r: 119, g: 136, b: 153})
@@ -34,6 +35,15 @@ export async function world(k: KaboomCtx) {
             generatePlayerComponents(k, k.vec2(object.x, object.y))
           );
           continue;
+        }
+
+        if (object.name === "Dashboard" || object.name === "imageGen") {
+          k.add([
+            k.pos(object.x, object.y),
+            k.rect(object.width, object.height),
+            k.opacity(0),
+            object.name,
+          ])
         }
 
         if (object.name === "Enemy") {
@@ -67,17 +77,26 @@ export async function world(k: KaboomCtx) {
       )
     }
   
-    if (Date.now() < 6 || Date.now() > 18) {
-      light(k)
-    } 
-    // for testing 
-    // light(k)
-  })
-  setPlayerMovement(k, entities.player)
-
-  if (Date.now() < 6 || Date.now() > 18) {
+    // if (time < 6 || time > 18) {
+    //   light(k)
+    // } 
+    //for testing 
     light(k)
+  })
+
+  setPlayerMovement(k, entities.player)
+  entities.player.onCollide("dashboard", () => window.location.href = "/dashboard");
+  entities.player.onCollide("imageGen", () => window.location.href = "/flashcard/generatedImages");
+
+
+  for (const enemy of entities.enemies) {
+    setEnemyAI({k, enemy});
+    
   }
+
+  // if (time < 6 || time > 18) {
+  //   light(k)
+  // }
   // for testing 
-  // light(k)
+  light(k)
 }

@@ -60,6 +60,7 @@ model Collection {
   categoryId    String?
   category      Category? @relation(fields: [categoryId], references: [id])
   attachments   Attachment[]
+  flashcards    Flashcard[]
   
   
   createdAt     DateTime  @default(now())
@@ -88,4 +89,31 @@ model Category {
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
+}
+
+model Flashcard {
+  id            String    @id @default(cuid())
+  front         String    @db.Text
+  back          String    @db.Text
+  image         String?   @db.Text
+  position      Int
+  isPublished   Boolean   @default(false)
+
+
+  collectionId  String
+  collection    Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([collectionId])
+}
+
+model StripeCustomer {
+  id            String    @id @default(cuid())
+  userId        String    @unique
+  stripeId      String    @unique
+  
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 }

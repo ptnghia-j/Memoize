@@ -12,13 +12,13 @@ type Props = {
 
 const UserAccountNav = ({ user} : Props) => {
   return (
-    <DropdownMenu >
+    <DropdownMenu>
       <DropdownMenuTrigger>
         <UserAvartar user={user} />
        
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent className="shadow-md z-50 bg-white" align="end">
+      <DropdownMenuContent className="rounded-lg border-2 shadow-md z-50 bg-white" align="end">
         <div className="flex items-center justify-start gap-2 p-2 border-2">
           <div className="flex flex-col space-y-1 leading-none">
             {user.name && <p className="font-medium"> {user.name} </p>}
@@ -26,13 +26,13 @@ const UserAccountNav = ({ user} : Props) => {
           </div>
         </div>
 
-        <DropdownMenuSeparator />
+        <DropdownMenuSeparator/>
 
         <DropdownMenuItem asChild>
             <Link href=""> Placeholder </Link>
         </DropdownMenuItem>
 
-        <DropdownMenuItem onClick={(e) => {
+        <DropdownMenuItem className="hover:cursor-pointer" onClick={(e) => {
           e.preventDefault()
           signOut().catch(console.error)
         }}>

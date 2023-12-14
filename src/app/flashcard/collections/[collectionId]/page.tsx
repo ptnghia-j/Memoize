@@ -2,13 +2,15 @@ import React from 'react'
 import { prisma } from '@/lib/db'
 import { getAuthSession } from '@/lib/nextauth'
 import { redirect } from 'next/navigation'
-import { Cat, LayoutDashboard, ListChecks, Share } from 'lucide-react'
+import { File, LayoutDashboard, ListChecks, Share } from 'lucide-react'
 import { IconBadge } from '@/components/icon-badge'
 import { TitleForm } from './_components/title-form'
 import { DescriptionForm } from './_components/description-form'
 import { ImageForm } from './_components/image-form'
 import { CategoryForm } from './_components/category-form'
 import { ShareForm } from './_components/share-form'
+import { AttachmentForm } from './_components/attachment-form'
+import { FlashcardForm } from './_components/flashcard-form'
 
 const CollectionIdPage = async ({params} : {
   params: { collectionId : string}
@@ -22,7 +24,20 @@ const CollectionIdPage = async ({params} : {
 
   const collection = await prisma.collection.findUnique({
     where: {
-      id: params.collectionId
+      id: params.collectionId,
+      userId: session?.user.id,
+    },
+    include: {
+      flashcards: {
+        orderBy: {
+          position: 'asc',
+        },
+      },
+      attachments: {
+        orderBy: {
+          createdAt: 'desc',
+        }
+      }
     }
   })
 
@@ -41,7 +56,8 @@ const CollectionIdPage = async ({params} : {
     collection.title,
     collection.description,
     collection.imageUrl,
-    collection.categoryId
+    collection.categoryId,
+    collection.flashcards.some(flashcard => flashcard.isPublished),
   ];
 
   const totalFields = requiredFields.length
@@ -104,7 +120,10 @@ const CollectionIdPage = async ({params} : {
               </h2>
             </div>
             <div>
-              ToDo: Add flashcards
+              <FlashcardForm 
+              initialData = { collection }
+              collectionId = { collection.id }
+              />
             </div>
           </div>
           <div>
@@ -117,8 +136,18 @@ const CollectionIdPage = async ({params} : {
             <div>
               <ShareForm collectionId={collection.id} />
             </div>
-
           </div>
+
+          <div className="flex items-center gap-x-2">
+            <IconBadge icon={File} />
+            <h2 className="text-xl">
+              Add any attachments
+            </h2>
+          </div>
+          <AttachmentForm 
+            initialData = { collection }
+            collectionId = { collection.id }
+          />
 
 
         </div>

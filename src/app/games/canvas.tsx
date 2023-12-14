@@ -25,8 +25,8 @@ const Canvas: React.FC = () => {
     isRunning.current = true;
 
 		const k = kaboom({
-      width: 1280,
-      height: 780,
+      width: window.innerWidth,
+      height: window.innerHeight,
       letterbox: true,
       global: false,
     })

@@ -6,6 +6,8 @@ import CreateFlashCard from './_components/CreateFlashCard'
 import HistoryCard from './_components/HistoryCard'
 import TrendingTopics from './_components/TrendingTopics'
 import RecentActivities from './_components/RecentActivities'
+import CreateQuiz from './_components/CreateQuiz'
+import GameWorld from './_components/GameWorld'
 
 type Props = {}
 
@@ -30,14 +32,20 @@ const page = async (props: Props) => {
         <div className = "grid gap-4 mt-4 md:grid-cols-2">
           <CreateFlashCard />
           <HistoryCard />
+        </div>
 
+        <div className = "grid gap-4 mt-4 md:grid-cols-2">
+          <CreateQuiz />
+          <GameWorld />
         </div>
 
         <div className="grid gap-4 mt-4 md:grid-cols-2 lg:grid-cols-7"> 
           <TrendingTopics />
           <RecentActivities />
-
         </div>
+
+        
+
 
       </main>
       

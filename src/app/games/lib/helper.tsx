@@ -93,6 +93,32 @@ export function loadSpriteHelper(k: KaboomCtx) {
       
       
       "rabbit-idle-down": 780,
+      "rabbit-down": {
+        from: 781,
+        to: 781,
+        loop: true,
+      },
+
+      "rabbit-idle-left": 821,
+      "rabbit-left": {
+        from: 821,
+        to: 822,
+        loop: true,
+      },
+
+      "rabbit-idle-right": 782,
+      "rabbit-right": {
+        from: 782,
+        to: 783,
+        loop: true,
+      },
+
+      "rabbit-idle-up": 819,
+      "rabbit-up": {
+        from: 819,
+        to: 820,
+        loop: true,
+      },
     }
   })
 

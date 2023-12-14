@@ -2,12 +2,17 @@
 
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import Link from "next/link";
+
 import TypewriterTitle from "../../../components/ui/TypewriterTitle";
 import { Session } from "next-auth";
 import SignInButton from "../../../components/SignInButton";
-import { cn } from '@/lib/utils'
+import { NavigationMenuTab } from "./ui/navigation-menu";
+
 import { useTheme } from "next-themes";
+
+import Link from "next/link"
+import { cn } from "@/lib/utils"
+
 
 export const Heading = ({ session } : {session : Session | null}) => {
   const theme = useTheme()
@@ -25,16 +30,26 @@ export const Heading = ({ session } : {session : Session | null}) => {
       <div className="text-blue-400 sm:text-xl md:text-2xl">
         <TypewriterTitle /> 
       </div>
-      
-      { session?.user? 
-        <Link href="/dashboard"> 
-          <Button>
-            Enter Memoize
-          <ArrowRight />
-          </Button> 
-        </Link> : 
+
+      { !session?.user  && (
         <SignInButton text="Sign in" />
-        }
+       )}
+      
+      { session?.user  && (
+        // <Link href="/dashboard"> 
+        //   <Button>
+        //     Enter Memoize
+        //   <ArrowRight />
+        //   </Button> 
+        // </Link>
+        <div className="flex flex-col items-center">
+          <NavigationMenuTab />
+        </div>
+
+        
+      )}
+
+      
         
       
     </div>
