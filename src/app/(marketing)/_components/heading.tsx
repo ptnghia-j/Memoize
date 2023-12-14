@@ -1,7 +1,5 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 import TypewriterTitle from "../../../components/ui/TypewriterTitle";
 import { Session } from "next-auth";
 import SignInButton from "../../../components/SignInButton";
@@ -9,8 +7,7 @@ import { NavigationMenuTab } from "./ui/navigation-menu";
 
 import { useTheme } from "next-themes";
 
-import Link from "next/link"
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 
 export const Heading = ({ session } : {session : Session | null}) => {
