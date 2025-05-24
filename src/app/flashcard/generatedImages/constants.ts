@@ -6,7 +6,13 @@ export const formSchema = z.object({
   }),
   amount: z.string().min(1),
   resolution: z.string().min(1),
+  api: z.string().min(1),
 });
+
+export const apiOptions = [
+  { value: "openai", label: "OpenAI DALL-E" },
+  { value: "google", label: "Google Imagen" },
+];
 
 export const amountOptions = [
   {
