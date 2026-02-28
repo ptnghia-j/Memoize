@@ -1,7 +1,7 @@
 "use client";
 
-import { use, useCallback, useEffect, useRef, useState} from 'react'
-import kaboom, { KaboomCtx } from 'kaboom'
+import { useCallback, useEffect, useRef} from 'react'
+import kaplay, { KAPLAYCtx } from 'kaplay'
 import { world } from './scenes/world'
 import { loadSpriteHelper } from './lib/helper'
 
@@ -10,11 +10,11 @@ const Canvas: React.FC = () => {
 	const isRunning = useRef(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   
-  const useWorld = useCallback((k: KaboomCtx) => {
+  const useWorld = useCallback((k: KAPLAYCtx) => {
     world(k)
   }, [])
 
-  const useloadSpriteHelper = useCallback((k: KaboomCtx) => {
+  const useloadSpriteHelper = useCallback((k: KAPLAYCtx) => {
     loadSpriteHelper(k)
   }, [])
 
@@ -24,7 +24,7 @@ const Canvas: React.FC = () => {
     }
     isRunning.current = true;
 
-		const k = kaboom({
+		const k = kaplay({
       width: window.innerWidth,
       height: window.innerHeight,
       letterbox: true,

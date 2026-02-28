@@ -4,14 +4,12 @@ import { Navbar } from "../../components/navbar"
 const MarketingLayout = async ({ children } : { children: React.ReactNode }) => {
   const session = await getAuthSession()
    return (
-    <div className="h-full dark:bg-[#1F1F1F]">
-        {/* Pass session information to the navbar to print out user name */}
+    <div className="h-full dark:bg-[#0f0f14]">
         <Navbar session={session} sidebarVisible={false} />
-        <main className="h-full pt-40">
+        <main className="h-full pt-20 pattern-dots">
           {children}
         </main>
       </div>
-
    )
  }
 

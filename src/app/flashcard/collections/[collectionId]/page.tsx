@@ -12,9 +12,10 @@ import { ShareForm } from './_components/share-form'
 import { AttachmentForm } from './_components/attachment-form'
 import { FlashcardForm } from './_components/flashcard-form'
 
-const CollectionIdPage = async ({params} : {
-  params: { collectionId : string}
+const CollectionIdPage = async (props : {
+  params: Promise<{ collectionId : string}>
 }) => {
+  const params = await props.params;
   
   const session = await getAuthSession()
 

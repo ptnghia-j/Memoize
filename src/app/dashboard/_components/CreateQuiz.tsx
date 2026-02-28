@@ -10,7 +10,7 @@ const CreateQuiz = (props: Props) => {
   const router = useRouter()
   return (
     <Card className="hover:cursor-pointer hover:opacity-70" onClick={() => {
-      // router.push('/flashcard')
+      router.push('/quiz')
     } }>
       <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0" >
         <CardTitle className="text-2xl font-bold">Create Quiz</CardTitle>

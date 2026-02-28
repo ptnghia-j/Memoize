@@ -5,9 +5,10 @@ import { prisma } from "@/lib/db";
 
 export async function DELETE(
   req: Request,
-  { params }: { params: { collectionId: string, attachmentId: string } }
+  { params }: { params: Promise<{ collectionId: string, attachmentId: string }> }
 ) {
   try {
+    const { collectionId, attachmentId } = await params;
     const session = await getAuthSession();
 
     if (!session?.user) {
@@ -16,7 +17,7 @@ export async function DELETE(
 
     const collectionOwner = await prisma.collection.findUnique({
       where: {
-        id: params.collectionId,
+        id: collectionId,
         userId: session?.user.id,
       }
     });
@@ -27,8 +28,8 @@ export async function DELETE(
 
     const attachment = await prisma.attachment.delete({
       where: {
-        collectionId: params.collectionId,
-        id: params.attachmentId,
+        collectionId: collectionId,
+        id: attachmentId,
       }
     });
 

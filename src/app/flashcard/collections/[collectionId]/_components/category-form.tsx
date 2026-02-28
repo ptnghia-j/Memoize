@@ -96,7 +96,7 @@ export const CategoryForm = ({ initialData, collectionId, options} : CategoryFor
                 <FormItem>
                   <FormControl>
                     <Combobox
-                      options = { ... options}
+                      options={options}
                       {...field}
                     />
 

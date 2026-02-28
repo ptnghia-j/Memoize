@@ -1,6 +1,6 @@
 import { DefaultSession, NextAuthOptions, getServerSession } from 'next-auth'
 
-import { PrismaAdapter } from '@next-auth/prisma-adapter'
+import { PrismaAdapter } from '@auth/prisma-adapter'
 import { prisma } from './db'
 import GoogleProvider  from 'next-auth/providers/google'
 

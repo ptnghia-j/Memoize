@@ -1,7 +1,7 @@
-import { KaboomCtx, Vec2, GameObj} from "kaboom";
+import { KAPLAYCtx, Vec2, GameObj} from "kaplay";
 import { anyOfKeysPressed, playAnimIfNotPlaying } from "../lib/utils";
 
-export function generatePlayerComponents(k: KaboomCtx, pos: Vec2) {
+export function generatePlayerComponents(k: KAPLAYCtx, pos: Vec2) {
   return [
     k.sprite("assets", {
       anim: "player-idle-down",
@@ -19,7 +19,7 @@ export function generatePlayerComponents(k: KaboomCtx, pos: Vec2) {
     "player"
   ]
 }
-export function setPlayerMovement(k: KaboomCtx, player: GameObj) {
+export function setPlayerMovement(k: KAPLAYCtx, player: GameObj) {
   k.onKeyDown((key) => {
     
     if (["left", "a"].includes(key) && !anyOfKeysPressed(k, ["up", "w", "down", "s"])) {

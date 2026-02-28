@@ -1,4 +1,4 @@
-import type { KaboomCtx } from "kaboom";
+import type { KAPLAYCtx } from "kaplay";
 import { colorizeBackground, drawBoundaries, drawTiles, fetchMapData } from "../lib/utils";
 import { generatePlayerComponents, setPlayerMovement } from "../entities/player";
 import { generateEnemyComponents } from "../entities/enemy";
@@ -6,7 +6,7 @@ import { light } from "../lib/helper";
 import { entities } from "../lib/helper";
 import { setEnemyAI } from "../entities/enemy";
 
-export async function world(k: KaboomCtx) {
+export async function world(k: KAPLAYCtx) {
   const time = new Date().getHours()
   if (time > 6 || time < 12)
     colorizeBackground({k, r:200, g: 255, b: 255})

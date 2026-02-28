@@ -1,4 +1,4 @@
-import { GameObj, KaboomCtx, Vec2 } from "kaboom";
+import { GameObj, KAPLAYCtx, Vec2 } from "kaplay";
 import { drawTilesHelper } from "./helper";
 
 
@@ -7,7 +7,7 @@ export async function fetchMapData(mapPath: string) {
   return await mapData.json()
 }
 
-export function colorizeBackground({k, r, g, b}: {k: KaboomCtx, r: number, g: number, b: number}) {
+export function colorizeBackground({k, r, g, b}: {k: KAPLAYCtx, r: number, g: number, b: number}) {
   k.add([
     k.rect(k.width(), k.height()),
     k.color(r, g, b),
@@ -15,7 +15,7 @@ export function colorizeBackground({k, r, g, b}: {k: KaboomCtx, r: number, g: nu
   ])
 }
 
-export function drawTiles({k, map, layer, tileheight, tilewidth} : {k: KaboomCtx, map: any, layer: any, tileheight: number, tilewidth: number}) {
+export function drawTiles({k, map, layer, tileheight, tilewidth} : {k: KAPLAYCtx, map: any, layer: any, tileheight: number, tilewidth: number}) {
   let numOfDrawnTiles = 0
   const pos = k.vec2(0,0)
 
@@ -39,7 +39,7 @@ export function drawTiles({k, map, layer, tileheight, tilewidth} : {k: KaboomCtx
   }
 }
 
-export function generateCollideBoxComponents(k: KaboomCtx, pos: Vec2, width: number, height: number, tag: string) {
+export function generateCollideBoxComponents(k: KAPLAYCtx, pos: Vec2, width: number, height: number, tag: string) {
   return [
     k.area({ shape: new k.Rect(k.vec2(0,0), width, height)}),
     k.pos(pos),
@@ -49,7 +49,7 @@ export function generateCollideBoxComponents(k: KaboomCtx, pos: Vec2, width: num
   ];
 }
 
-export function drawBoundaries(k: KaboomCtx, map: GameObj, layer: any) {
+export function drawBoundaries(k: KAPLAYCtx, map: GameObj, layer: any) {
   for (const object of layer.objects) {
     map.add(
       generateCollideBoxComponents(
@@ -62,11 +62,12 @@ export function drawBoundaries(k: KaboomCtx, map: GameObj, layer: any) {
 }
 
 export function playAnimIfNotPlaying(obj: GameObj, animName: string) {
-  if(obj.curAnim() !== animName) obj.play(animName)
+  const curAnim = obj.getCurAnim();
+  if(curAnim?.name !== animName) obj.play(animName)
 }
 
 // prevent character moving diagonally
-export function anyOfKeysPressed(k: KaboomCtx, keys: any[]) {
+export function anyOfKeysPressed(k: KAPLAYCtx, keys: any[]) {
   if (keys?.length === 0) return false
   
 

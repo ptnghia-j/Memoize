@@ -1,13 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains:[
-      "lh3.googleusercontent.com",
-      "utfs.io",
-      "oaidalleapiprodscus.blob.core.windows.net"
-
+    remotePatterns: [
+      { protocol: "https", hostname: "lh3.googleusercontent.com" },
+      { protocol: "https", hostname: "utfs.io" },
+      { protocol: "https", hostname: "oaidalleapiprodscus.blob.core.windows.net" },
     ]
-  }
+  },
+  serverExternalPackages: ["@uploadthing/react", "uploadthing"],
 }
 
 module.exports = nextConfig

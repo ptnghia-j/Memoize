@@ -4,11 +4,11 @@ import { prisma } from "@/lib/db";
 
 export async function PATCH (
   req: Request, 
-  { params }: { params: { collectionId: string } }
+  { params }: { params: Promise<{ collectionId: string }> }
 ) {
   try {
     const session = await getAuthSession();
-    const { collectionId } = params;
+    const { collectionId } = await params;
     const values = await req.json();
 
     if (!session?.user) {

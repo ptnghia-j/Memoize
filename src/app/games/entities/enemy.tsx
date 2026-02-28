@@ -1,9 +1,9 @@
-import { KaboomCtx, Vec2 } from "kaboom";
+import { KAPLAYCtx, Vec2 } from "kaplay";
 import { playAnimIfNotPlaying } from "../lib/utils";
 
 const directionalStates = ["right", "left", "up", "down"];
 const waitTime = 0.5;
-export function generateEnemyComponents(k: KaboomCtx, pos: Vec2) {
+export function generateEnemyComponents(k: KAPLAYCtx, pos: Vec2) {
   return [
     k.sprite("assets", {
       anim: "rabbit-idle-down",
@@ -36,7 +36,7 @@ export function generateEnemyComponents(k: KaboomCtx, pos: Vec2) {
 //   );
 // }
 
-export function setEnemyAI({k, enemy} : {k: KaboomCtx, enemy: any}) {
+export function setEnemyAI({k, enemy} : {k: KAPLAYCtx, enemy: any}) {
   k.onUpdate(() => {
     switch (enemy.state) {
       case "right":
@@ -69,7 +69,7 @@ export function setEnemyAI({k, enemy} : {k: KaboomCtx, enemy: any}) {
       playAnimIfNotPlaying(enemy, "rabbit-right");
       await k.wait(waitTime);
   
-      if (enemy.onCollide()) {
+      if (enemy.isColliding("boundary")) {
         enemy.enterState("idle");
         return;
       }
@@ -82,7 +82,7 @@ export function setEnemyAI({k, enemy} : {k: KaboomCtx, enemy: any}) {
       playAnimIfNotPlaying(enemy, "rabbit-left");
       await k.wait(waitTime);
   
-      if (enemy.onCollide()) {
+      if (enemy.isColliding("boundary")) {
         enemy.enterState("idle");
         return;
       }
@@ -94,7 +94,7 @@ export function setEnemyAI({k, enemy} : {k: KaboomCtx, enemy: any}) {
       playAnimIfNotPlaying(enemy, "rabbit-up");
       await k.wait(waitTime);
   
-      if (enemy.onCollide()) {
+      if (enemy.isColliding("boundary")) {
         enemy.enterState("idle");
         return;
       }
@@ -106,7 +106,7 @@ export function setEnemyAI({k, enemy} : {k: KaboomCtx, enemy: any}) {
       playAnimIfNotPlaying(enemy, "rabbit-down");
       await k.wait(waitTime);
   
-      if (enemy.onCollide()) {
+      if (enemy.isColliding("boundary")) {
         enemy.enterState("idle");
         return;
       }

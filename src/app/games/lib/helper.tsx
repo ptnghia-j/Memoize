@@ -1,6 +1,6 @@
-import { GameObj, KaboomCtx, Vec2 } from "kaboom";
+import { GameObj, KAPLAYCtx, Vec2 } from "kaplay";
 
-export function loadSpriteHelper(k: KaboomCtx) {
+export function loadSpriteHelper(k: KAPLAYCtx) {
   k.loadSprite("decorations", "/assets/decorations.png", {
     sliceX: 24,
     sliceY: 24,
@@ -133,7 +133,7 @@ export function loadSpriteHelper(k: KaboomCtx) {
   })
 }
 
-export function drawTilesHelper(k: KaboomCtx, map: GameObj, layer: any, pos: Vec2, tile: number) {
+export function drawTilesHelper(k: KAPLAYCtx, map: GameObj, layer: any, pos: Vec2, tile: number) {
 
   if (layer.name === "groundGrass") {
     map.add([
@@ -284,8 +284,8 @@ export const entities = {
   enemies: [Object()],
 };
 
-export function light(k: KaboomCtx) {
-  let offset = 50 + k.rand();
+export function light(k: KAPLAYCtx) {
+  let offset = 50 + Number(k.rand());
   let opac = 0.95;
   let subOffset = offset * 0.45;
   k.destroyAll("light")

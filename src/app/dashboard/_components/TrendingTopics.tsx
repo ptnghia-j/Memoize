@@ -3,9 +3,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import React from 'react'
 import WordCloud from './WordCloud'
 
-type Props = {}
+type Props = {
+  formattedTopics: { text: string; value: number }[];
+}
 
-const TrendingTopics = (props: Props) => {
+const TrendingTopics = ({ formattedTopics }: Props) => {
   return (
     <Card className="col-span-4">
       <CardHeader className="">
@@ -15,7 +17,7 @@ const TrendingTopics = (props: Props) => {
         </CardDescription>
 
         <CardContent className=""> 
-          <WordCloud />
+          <WordCloud formattedTopics={formattedTopics} />
         </CardContent>
         
       </CardHeader>

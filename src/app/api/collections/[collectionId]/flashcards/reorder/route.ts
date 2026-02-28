@@ -4,9 +4,10 @@ import { prisma } from "@/lib/db";
 
 export async function PUT(
   req: Request,
-  { params }: { params: { collectionId: string; } }
+  { params }: { params: Promise<{ collectionId: string; }> }
 ) {
   try {
+    const { collectionId } = await params;
     const session = await getAuthSession();
 
     if (!session?.user) {
@@ -17,7 +18,7 @@ export async function PUT(
 
     const ownCollection = await prisma.collection.findUnique({
       where: {
-        id: params.collectionId,
+        id: collectionId,
         userId: session?.user.id,
       }
     });

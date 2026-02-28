@@ -8,11 +8,10 @@ import { IconBadge } from "@/components/icon-badge";
 import { Banner } from "@/components/banner";
 
 
-const ChapterIdPage = async ({
-  params
-}: {
-  params: { collectionId: string; flashcardId: string }
+const ChapterIdPage = async (props: {
+  params: Promise<{ collectionId: string; flashcardId: string }>
 }) => {
+  const params = await props.params;
   const session = await getAuthSession();
 
   if (!session) {

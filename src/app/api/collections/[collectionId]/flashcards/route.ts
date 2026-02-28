@@ -4,9 +4,10 @@ import { prisma } from "@/lib/db";
 
 export async function POST(
   req: Request,
-  { params }: { params: { collectionId: string } }
+  { params }: { params: Promise<{ collectionId: string }> }
 ) {
   try {
+    const { collectionId } = await params;
     const session = await getAuthSession();
     const { term, description } = await req.json();
 
@@ -16,7 +17,7 @@ export async function POST(
 
     const collectionOwner = await prisma.collection.findUnique({
       where: {
-        id: params.collectionId,
+        id: collectionId,
         userId: session?.user.id,
       }
     });
@@ -27,7 +28,7 @@ export async function POST(
 
     const lastFlashcard = await prisma.flashcard.findFirst({
       where: {
-        collectionId: params.collectionId,
+        collectionId: collectionId,
       },
       orderBy: {
         position: "desc",
@@ -40,7 +41,7 @@ export async function POST(
       data: {
         front: term,
         back: description,
-        collectionId: params.collectionId,
+        collectionId: collectionId,
         position: newPosition,
       }
     });

@@ -5,9 +5,11 @@ import { History } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 
-type Props = {}
+type Props = {
+  totalCollections: number;
+}
 
-const HistoryCard = (props: Props) => {
+const HistoryCard = ({ totalCollections }: Props) => {
   const router = useRouter()
   return (
 
@@ -21,7 +23,7 @@ const HistoryCard = (props: Props) => {
 
       <CardContent>
         <p className="text-sm text-muted-foreground">
-          View your history of past quiz attempts
+          You have created {totalCollections} flashcard collection(s).
         </p>
       </CardContent>
       

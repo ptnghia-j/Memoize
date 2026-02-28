@@ -6,9 +6,10 @@ import { getAuthSession } from "@/lib/nextauth";
 
 export async function POST(
   req: Request,
-  { params }: { params: { collectionId: string } }
+  { params }: { params: Promise<{ collectionId: string }> }
 ) {
   try {
+    const { collectionId } = await params;
     const session = await getAuthSession()
     const { url } = await req.json();
 
@@ -18,7 +19,7 @@ export async function POST(
 
     const collectionOwner = await prisma.collection.findUnique({
       where: {
-        id: params.collectionId,
+        id: collectionId,
         userId: session?.user.id,
       }
     });
@@ -32,7 +33,7 @@ export async function POST(
       data: {
         url,
         name: url.split("/").pop(),
-        collectionId: params.collectionId,
+        collectionId: collectionId,
       }
     });
 
